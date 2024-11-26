@@ -21,10 +21,16 @@
         devShells.default =
           with pkgs;
           mkShell {
-            packages = [
-              uv
-              python3Packages.uvicorn
-            ];
+            packages =
+              [
+                uv
+                ruff
+              ]
+              ++ (with python3Packages; [
+                uvicorn
+                jedi-language-server
+                python-lsp-server
+              ]);
           };
 
         formatter = pkgs.nixfmt-rfc-style;

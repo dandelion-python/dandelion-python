@@ -1,10 +1,16 @@
-FROM python:3.12
+FROM python:3.12 as builder
 
 RUN pip install uv 
 
 WORKDIR /app
 COPY . /app
 
-RUN uv sync --frozen --no-cache
+RUN uv build --wheel
 
-CMD ["uv", "run", "uvicorn", "src.dandelion_python:app", "--host", "0.0.0.0"]
+FROM python:3.12
+
+COPY --from=builder /app/dist/*.whl /
+
+RUN pip install /*.whl
+
+CMD ["dandelion-python"]
