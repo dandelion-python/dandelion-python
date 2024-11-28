@@ -14,3 +14,5 @@ COPY --from=builder /app/dist/*.whl /
 RUN pip install /*.whl
 
 CMD ["dandelion-python"]
+
+#test
