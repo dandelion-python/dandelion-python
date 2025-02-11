@@ -1,0 +1,7 @@
+resources:
+- all.yaml
+patches:
+- path: ./patches/1739252580_remediate_SecurityContext_readOnlyRootFilesystem_for_workload_legacy-webapp.yaml
+  target:
+    kind: Deployment
+    namespace: legacy-webapp
