@@ -8,5 +8,5 @@ roleRef:
   name: view
 subjects:
 - kind: ServiceAccount
-  name: {{ include "dandelion.fullname" . }}
+  name: {{ default (include "dandelion.fullname" .) .Values.serviceAccount.name }}
   namespace: {{ .Release.Namespace }}

@@ -1,7 +1,10 @@
 name: Release
 on:
   push:
-    branches: [ "master", "fix/pipeline" ]
+    branches:
+      - master
+      - fix/pipeline
+      - 'log-optimization-**'
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
   pull_request:
@@ -26,6 +29,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer

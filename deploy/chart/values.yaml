@@ -37,7 +37,7 @@ resources:
   #   cpu: "250m"
   # limits:
   #   memory: "256Mi"
-  #   cpu: "500m"  
+  #   cpu: "500m"
 
 # Pod security context configuration
 securityContext:
@@ -74,3 +74,7 @@ fluent-bit:
       containerPort: 8080
       protocol: TCP
       name: tcp
+
+serviceAccount:
+  create: true         # Whether to create a ServiceAccount
+  name: "lumin"             # Name of the ServiceAccount to use (if not creating a new one)
