@@ -1,6 +1,6 @@
 import logging
 import os
-
+from jinja2 import Template
 import uvicorn
 from fastapi import FastAPI
 
@@ -13,10 +13,14 @@ app = FastAPI()
 async def read_root():
     return {"message": "Hello world!"}
 
+@app.get("/healthz")
+async def healthz(status: str = ""):
+    template = "Current status: " + status
+    result = Template(template).render()
+    return {"status": result}
 
 def start_http_server():
     uvicorn.run(app, host="0.0.0.0", port=8000, log_config=None)
-
 
 def configure_loggers(handler: logging.Handler):
     for logger_name in (
