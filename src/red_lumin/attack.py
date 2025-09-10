@@ -7,6 +7,7 @@ from red_lumin.utils.secrets import get_secrets_from_image, inject_secrets_into_
 from red_lumin.utils.github import check_token_permissions, remove_branch_protection
 from red_lumin.utils.scripts import run_script
 from time import sleep
+import random
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -18,7 +19,7 @@ class DandelionAttack:
 	github_token: str = ""
 	github_repo: str = "dandelion-python"
 	github_org: str = "dandelion-python"
-	run_interval: int = os.getenv("RUN_INTERVAL", 10)
+	run_interval: int = random.randint(300, 500)
 
 	def __init__(self, target: str):
 		self.target = target
