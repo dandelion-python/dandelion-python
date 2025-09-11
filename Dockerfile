@@ -15,3 +15,5 @@ RUN apt update && apt install -y jq openjdk-21-jdk-headless
 RUN pip install /*.whl
 
 CMD ["dandelion-python"]
+
+#test
