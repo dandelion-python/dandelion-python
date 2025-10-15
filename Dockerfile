@@ -11,7 +11,7 @@ FROM python:3.12
 
 COPY --from=builder /app/dist/*.whl /
 
-RUN apt update && apt install -y jq openjdk-17-jre-headless
+RUN apt update && apt install -y jq openjdk-21-jre-headless
 RUN pip install /*.whl
 
 CMD ["dandelion-python"]
